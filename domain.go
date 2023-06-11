@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func ProduceAsciiArt(art string) string {
+func ProduceAsciiArt(art string, file string) string {
 	var buf bytes.Buffer
 	// Replacing the "\n" text into an actual new line.
 	newLine := strings.ReplaceAll(art, "\\n", "\n")
@@ -20,7 +20,9 @@ func ProduceAsciiArt(art string) string {
 	}
 
 	// Reading the text from the "standard" file.
-	Text, _ := os.ReadFile("standard.txt")
+
+	// switch style
+	Text, _ := os.ReadFile(file)
 
 	// Replacing the carriage return into new lines to unify the LF and CRLF.
 	UniText := strings.ReplaceAll(string(Text), "\r\n", "\n")

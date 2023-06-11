@@ -11,7 +11,7 @@
         display: flex;
         justify-content: center;
     }
-    input {
+    .flex-box input {
         margin-top: 3em;
         width: 20em;
         min-height: 2em;
@@ -24,6 +24,15 @@
         min-height: 2em;
     }
 
+    .selection {
+        min-height: 5em;
+        width: 20em;
+        margin: auto;
+        padding-left: 2em;
+    }
+    .selection div {
+        margin: .5em;
+    }
   </style>
 </head>
 <body>
@@ -33,6 +42,21 @@
     <form action="/ascii-art" method="POST">
         <div class="flex-box">
             <input type="text" id="query" name="query" placeholder="Enter any text">
+        </div>
+        <div class="selection">
+            <p>Select display style: </p>
+            <div>
+                <input type="radio" id="standard" name="style" value="standard.txt">
+                <label for="standard">STANDARD</label>
+            </div>
+            <div>
+                <input type="radio" id="shadow" name="style" value="shadow.txt">
+                <label for="css">SHADOW</label>
+            </div>
+            <div>
+                <input type="radio" id="thinkertoy" name="style" value="thinkertoy.txt">
+                <label for="thinkertoy">THINKERTOY</label> 
+            </div>
         </div>
         <div class="flex-box">
             <button type="submit">Generate</button>

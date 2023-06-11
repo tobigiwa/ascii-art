@@ -45,13 +45,18 @@ func POST(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+	var style string
+	if style = r.PostForm.Get("style"); text == "" {
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+		panic(err)
+	}
 	ts, err := template.ParseFiles(templateDir()["ascii-art"])
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		panic(err)
 	}
 
-	err = ts.Execute(w, domain.ProduceAsciiArt(text))
+	err = ts.Execute(w, domain.ProduceAsciiArt(text, style))
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		panic(err)
