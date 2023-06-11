@@ -8,11 +8,11 @@
 
 ### Usage
 
-> go run cmd/web/main.go
+> go run cmd/web/ascii-art.go
 
 - To produce the executable
 
-> go build cmd/web/main.go
+> go build cmd/web/ascii-art.go
 
 ### Implementation details
 
