@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<title>ASCII-ART</title>
+<style>
+    .monospace {
+      font-family: monospace;
+    }
+    .flex-box {
+        display: flex;
+        justify-content: center;
+    }
+    input {
+        margin-top: 3em;
+        width: 20em;
+        min-height: 2em;
+        padding-left: .5em;
+        outline: none;
+    }
+
+    div > button {
+        margin-top: 1em;
+        min-height: 2em;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="flex-box">
+        <h1>ASCII-ART</h1>
+    </div>
+    <form action="/ascii-art" method="POST">
+        <div class="flex-box">
+            <input type="text" id="query" name="query" placeholder="Enter any text">
+        </div>
+        <div class="flex-box">
+            <button type="submit">Generate</button>
+        </div>
+      </form>
+<main>
+</main>
+</body>
+</html>
