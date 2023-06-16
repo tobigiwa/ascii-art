@@ -12,8 +12,8 @@ func Recover(next http.Handler) http.Handler {
 		defer func() {
 			if err := recover(); err != nil {
 				w.Header().Set("connection", "Close")
-				http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
-				log.Fatal(err)
+				fmt.Println(`-----------error occured-----------`)
+				log.Fatalln(err)
 			}
 		}()
 

@@ -1,28 +1,20 @@
 package http
 
 import (
+	"fmt"
 	"net/http"
-	"os"
 	"text/template"
 
 	domain "01.kood.tech/git/AmrKharaba/ascii-art"
+	pages "01.kood.tech/git/AmrKharaba/ascii-art/templates"
 )
-
-func templateDir() map[string]string {
-	path, err := os.Getwd()
-	if err != nil {
-		panic(err) // panics would be handled and log by the Recover middleware
-	}
-	return map[string]string{"ascii-art": path + `/templates/ascii-art.html`, "base": path + `/templates/base.html`}
-
-}
 
 func GET(w http.ResponseWriter, r *http.Request) {
 
-	ts, err := template.ParseFiles(templateDir()["base"])
+	ts, err := template.ParseFS(pages.BaseHTML, "base.html")
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
-		panic(err)
+		panic(fmt.Errorf("could not found base.html"))
 	}
 
 	err = ts.Execute(w, nil)
@@ -30,7 +22,6 @@ func GET(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		panic(err)
 	}
-
 }
 
 func POST(w http.ResponseWriter, r *http.Request) {
@@ -42,18 +33,19 @@ func POST(w http.ResponseWriter, r *http.Request) {
 	var text string
 	if text = r.PostForm.Get("query"); text == "" {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-		panic(err)
+		panic(fmt.Errorf("no text was entered"))
 	}
 
 	var style string
 	if style = r.PostForm.Get("style"); text == "" {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-		panic(err)
+		panic(fmt.Errorf("no style was selected"))
 	}
-	ts, err := template.ParseFiles(templateDir()["ascii-art"])
+
+	ts, err := template.ParseFS(pages.AsciiArtHTML, "ascii-art.html")
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
-		panic(err)
+		panic(fmt.Errorf("could not found ascii-art.html"))
 	}
 
 	err = ts.Execute(w, domain.ProduceAsciiArt(text, style))
