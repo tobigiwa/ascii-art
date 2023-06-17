@@ -41,12 +41,13 @@
     </div>
     <form action="/ascii-art" method="POST">
         <div class="flex-box">
-            <input type="text" id="query" name="query" placeholder="Enter any text">
+            <textarea name="query" id="query" cols="30" rows="10" placeholder="Enter any text" required></textarea>
+            <!-- <input type="text" id="query" name="query" required placeholder=""> -->
         </div>
         <div class="selection">
             <p>Select display style: </p>
             <div>
-                <input type="radio" id="standard" name="style" value="standard.txt">
+                <input type="radio" id="standard" name="style" value="standard.txt" checked>
                 <label for="standard">STANDARD</label>
             </div>
             <div>

@@ -29,19 +29,13 @@ func POST(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-
-	var text string
+	var text, style string
+	style = r.PostForm.Get("style")
 	if text = r.PostForm.Get("query"); text == "" {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		panic(fmt.Errorf("no text was entered"))
 	}
-
-	var style string
-	if style = r.PostForm.Get("style"); text == "" {
-		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-		panic(fmt.Errorf("no style was selected"))
-	}
-
+	
 	ts, err := template.ParseFS(pages.AsciiArtHTML, "ascii-art.html")
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
