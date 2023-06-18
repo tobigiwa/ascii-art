@@ -1,5 +1,6 @@
 # ASCII-ART
 
+!\[my badge\](https://badgen.net/badge/hello/world/red?icon=twitter)
 ### Description
 **This is a Go-based project that generates ASCII art text banners in styles, including shadow, standard, and thinkertoy.**
 
