@@ -1,44 +1,49 @@
 <!doctype html>
 <html lang='en'>
+
 <head>
-<meta charset='utf-8'>
-<title>ASCII-ART</title>
-<style>
-    .monospace {
-      font-family: monospace;
-    }
-    .flex-box {
-        display: flex;
-        justify-content: center;
-    }
-    input {
-        margin-top: 3em;
-        width: 20em;
-        min-height: 2em;
-        padding-left: .5em;
-        outline: none;
-    }
+    <template>{{.InjectedString}}</template>
+    <meta charset='utf-8'>
+    <title>ASCII-ART</title>
+    <style>
+        .monospace {
+            font-family: monospace;
+        }
 
-    div > a {
-        margin-top: 1em;
-        min-height: 2em;
-    }
+        .flex-box {
+            display: flex;
+            justify-content: center;
+        }
 
-  </style>
+        input {
+            margin-top: 3em;
+            width: 20em;
+            min-height: 2em;
+            padding-left: .5em;
+            outline: none;
+        }
+
+        div>a {
+            margin-top: 1em;
+            min-height: 2em;
+        }
+    </style>
 </head>
+
 <body>
     <div class="flex-box">
         <h1>ASCII-ART</h1>
     </div>
-<main>
-    <div class="flex-box">
-        <pre class="monospace">
-            {{.}}
+    <main>
+        <div class="flex-box">
+            <pre class="monospace">
+            {{.AsciiArt}}
         </pre>
-    </div>
-    <div>
-        <a href="/" onclick="history.back(); return false;">Go Back</a>
-    </div>
-</main>
+        </div>
+        <div>
+            <a href="/" onclick="history.back(); return false;">Go Back</a>
+        </div>
+    </main>
 </body>
+
 </html>

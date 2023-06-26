@@ -2,7 +2,6 @@ package domain
 
 import (
 	"bytes"
-	"os"
 	"strings"
 	"unicode"
 )
@@ -31,16 +30,17 @@ func splitString(sequence string, max_len int) string {
 }
 
 func ProduceAsciiArt(art string, file string) string {
+
 	var buf bytes.Buffer
+
 	// Replacing the "\n" text into an actual new line.
 	art = strings.ReplaceAll(art, "\\n", "\n")
 
 	// Splitting the input "string" after the "\n" being converted into an actual new line into multiple lines.
 	String := strings.Split(splitString(art, 25), "\n")
 
-	// Reading the text from the "standard" file.
-	// switch style
-	Text, _ := os.ReadFile(file)
+	// pick banner type
+	Text, _ := Banner.ReadFile(file)
 
 	// Replacing the carriage return into new lines to unify the LF and CRLF.
 	UniText := strings.ReplaceAll(string(Text), "\r\n", "\n")

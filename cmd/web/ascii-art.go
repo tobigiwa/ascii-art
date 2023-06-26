@@ -18,7 +18,5 @@ func main() {
 	}
 
 	fmt.Println("server running...@ http://localhost:5030")
-	if err := webserver.ListenAndServe(); err != nil {
-		log.Fatal(err)
-	}
+	log.Fatal(webserver.ListenAndServe())
 }
